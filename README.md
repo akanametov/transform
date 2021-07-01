@@ -209,4 +209,4 @@ tensor([[333, 251, 358, 278,   1],
 
 ### License
 
-This project is licensed under GNU General Public License v3.0
+This project is licensed under MIT License
