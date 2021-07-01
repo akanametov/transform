@@ -14,7 +14,36 @@ pip install git+https://github.com/akanametov/transform.git#egg=transform
 
 ```python
 # import 
-from transform import Compose, Resize, Rotate, HorizontalFlip, VerticalFlip, ToTensor, Normalize, PadBBox, DeNormalize, ToImage
+from transform import (Compose, Resize, Rotate, HorizontalFlip, VerticalFlip,
+                       ToTensor, Normalize, PadBBox, DeNormalize, ToImage)
+                       
+# resize
+resized_img, resized_bbox = Resize(size=...)(img, bbox)
+
+# rotate
+rotated_img, rotated_bbox = Rotate(p=...)(resized_img, resized_bbox)
+
+# horizontally flip
+hflipped_img, hflipped_bbox = HorizontalFlip(p=...)(rotated_img, rotated_bbox)
+
+# vertically flip
+vflipped_img, vflipped_bbox = VerticalFlip(p=...)(hflipped_img, hflipped_bbox)
+
+# to torch tensor
+torch_img, torch_bbox = ToTensor()(vflipped_img, vflipped_bbox)
+
+# normalize
+normalized_img, normalized_bbox = Normalize(mean=..., std=...)(torch_img, torch_bbox)
+
+# pad bbox
+normalized_img, padded_bbox = PadBBox(max_num_bbox=..., pad_value=...)(normalized_img, normalized_bbox)
+
+# denormalize
+denormalized_img, denormalized_bbox = DeNormalize(mean=..., std=...)(normalized_img, normalized_bbox)
+
+# to pillow
+pillow_img, list_bbox = ToImage()(denormalized_img, denormalized_bbox)
+
 ```
 <a><div class='column'>
       <img title="Initial image" alt="Alt text" src="assets/initial.png" align="center" height="400px" width="460px"/>
