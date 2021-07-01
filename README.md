@@ -2,6 +2,8 @@ transform
 ==============
 A simple augmentation for Object Detection
 
+Look at [notebook](https://github.com/akanametov/transform/blob/main/notebook.ipynb) for more details!
+
 ### Install
 
 ```
@@ -11,23 +13,8 @@ pip install git+https://github.com/akanametov/transform.git#egg=transform
 ### Usage
 
 ```python
-# import libraries
-import os
-import re
-import glob
-import random
-import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image, ImageDraw
-
-import torch
-import transform as T
-
-# load some sample
-img = Image.open('sample_data/002.jpg').convert('RGB')
-bbox = read_bbox('sample_data/002.txt') # look into notebook for this function
-
-draw_bbox(img, bbox) # look into notebook for this function
+# import 
+from transform import Compose, Resize, Rotate, HorizontalFlip, VerticalFlip, ToTensor, Normalize, PadBBox, DeNormalize, ToImage
 ```
 <a><div class='column'>
       <img title="Initial image" alt="Alt text" src="assets/initial.png" align="center" height="400px" width="460px"/>
